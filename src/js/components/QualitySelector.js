@@ -37,6 +37,7 @@ module.exports = function(videojs) {
          player.on(events.QUALITY_SELECTED, function(event, newSource) {
             // Update the selected source with the source that was actually selected
             this.setSelectedSource(newSource);
+            this.updateLabel(newSource.label);
          }.bind(this));
 
          // Since it's possible for the player to get a source before the selector is
@@ -47,6 +48,14 @@ module.exports = function(videojs) {
          }.bind(this));
 
          this.controlText('Open quality selector menu');
+      },
+
+      createEl: function () {
+         var el = MenuButton.prototype.createEl.call(this);
+         this.labelEl_ = document.createElement("div");
+         this.labelEl_.className = "vjs-quality-value";
+         el.appendChild(this.labelEl_);
+         return el;
       },
 
       /**
@@ -88,6 +97,10 @@ module.exports = function(videojs) {
       buildWrapperCSSClass: function() {
          return 'vjs-quality-selector ' + MenuButton.prototype.buildWrapperCSSClass.call(this);
       },
+
+      updateLabel: function(label){
+         this.labelEl_.innerHTML = label;
+      }
 
    });
 
