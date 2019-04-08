@@ -1,5 +1,5 @@
 {
-  "name": "@silvermine/videojs-quality-selector",
+  "name": "@oliversi/videojs-quality-selector",
   "version": "1.2.0",
   "description": "video.js plugin for selecting a video quality or resolution",
   "main": "src/js/index.js",
