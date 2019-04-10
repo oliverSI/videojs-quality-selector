@@ -28,7 +28,10 @@ module.exports = function(videojs) {
          player.on(events.QUALITY_REQUESTED, function(event, newSource) {
             this.setSelectedSource(newSource);
             player.addClass(QUALITY_CHANGE_CLASS);
-
+            var currentTime = player.currentTime();
+            player.one('waiting', function() {
+               player.currentTime(currentTime)
+            });
             player.one('loadeddata', function() {
                player.removeClass(QUALITY_CHANGE_CLASS);
             });
